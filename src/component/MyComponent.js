@@ -1,31 +1,70 @@
-import React from 'react';
-import UserInfo from './UserInfo';
+import React, { useState } from 'react';
+import AddUserInfo from './AddUserInfo';
 import DisplayInfo from './DisplayInfo';
 
-class MyComponent extends React.Component{
+// class MyComponent extends React.Component{
 
-    state = {
-        listUsers: [
+//     state = {
+//         listUsers: [
+//             {id: 1, name : "megumin", age: "14"},
+//             {id: 2, name : "aqua", age: "17"},
+//             {id: 3, name : "darkness", age: "18"},
+//         ]
+//     }
+
+//     handleAddNewUser = (userObj) => {
+//         this.setState({
+//             listUsers: [userObj, ...this.state.listUsers]
+//         })
+//     }
+
+//     //JSX
+//     render() {
+//         const test = 'alo'
+//         return(
+//             <div>
+//                 {test}
+//                 <AddUserInfo
+//                     handleAddNewUser={this.handleAddNewUser} 
+//                 />
+//                 <br/> <br/>
+//                 <DisplayInfo
+//                     listUsers={this.state.listUsers}
+//                 />
+
+//             </div>
+//         );    
+//     }
+// }
+ 
+const MyComponent = (props) => {
+
+    const [listUsers, setListUsers ] = useState(
+        [
             {id: 1, name : "megumin", age: "14"},
             {id: 2, name : "aqua", age: "17"},
             {id: 3, name : "darkness", age: "18"},
         ]
-    }
 
- 
-    //JSX
-    render() {
+    )
 
-        return(
-            <div>
-                <UserInfo></UserInfo>
+    const handleAddNewUser = (userObj) => {
+        setListUsers([userObj, ...listUsers])
+//         this.setState({
+//             listUsers: [userObj, ...this.state.listUsers]
+//         })
+   }
+    return (
+        <div>
+                <AddUserInfo
+                    handleAddNewUser={handleAddNewUser} 
+                />
                 <br/> <br/>
                 <DisplayInfo
-                listUsers={this.state.listUsers} />
-
-            </div>
-        );    
-    }
+                    listUsers={listUsers}
+                />
+        </div>
+    )
 }
 
 export default MyComponent;

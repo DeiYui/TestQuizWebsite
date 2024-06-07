@@ -1,33 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import './DisplayInfo.scss';
+// import logo from './../logo.svg';
 
-class DisplayInfo extends React.Component {
+const DisplayInfo = (props) => {
+    const { listUsers } = props;
 
-    state = {
-        isShowListUser: true
+    const [isShowHideListUser, setShowHideListUser] = useState(true);
+    
+    const handleShowHideListUser = () => {
+        setShowHideListUser(!isShowHideListUser)
     }
-    handleShowHide = () => {
-        this.setState({
-            isShowListUser: !this.state.isShowListUser
-        })
-    }
-    render () {
-        //destructuring array/object
-        const { listUsers } = this.props;
-        //props
+
+    useEffect(
+        () => {
+            if(listUsers.length === 4) {
+                alert('nheiu qua')
+            }
+    }, [listUsers]
+);
+
+
         return(
-            <div>
+            <div className='display-info-container'>
                 <div>
-                    <span onClick={() => {this.handleShowHide() }}> 
-                        {this.state.isShowListUser === true ? "Hide list users" : "Show list users"}
+                    <span onClick={() => handleShowHideListUser()}>
+                       {isShowHideListUser === true ? "hide" : "show"}
                     </span>
                 </div>
-                {this.state.isShowListUser &&
+
+                {isShowHideListUser &&
                     <div>
-                {listUsers.map((user) => {
-                     return (
-                        <div key={user.id} className={+user.age > 16 ? "green" : "red"}>
+                    {listUsers.map((user) => {
+                        return (
+                            <div key={user.id} className={+user.age > 16 ? "green" : "red"}>
                             <div>My name is {user.name}</div>
                             <div>My age is {user.age}</div>
+                        <div>
+                            <button>Delete</button>
+                        </div>
                             <hr/>
                         </div>
                      )
@@ -36,8 +46,7 @@ class DisplayInfo extends React.Component {
                 }      
             </div>
         )
-    }
-
+    
 }
 
 
