@@ -3,8 +3,8 @@ import './Admin.scss';
 import { FaBars } from 'react-icons/fa';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Admin = (props) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -18,22 +18,13 @@ const Admin = (props) => {
                 <div className='admin-header'>
                 <FaBars onClick={() => setCollapsed(!collapsed)} />
                 </div>
+
                 <div className='admin-main'>
-                    <Outlet/>
+                    <PerfectScrollbar>
+                        <Outlet/>   
+                    </PerfectScrollbar>
                 </div>
             </div>
-
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                />
         </div>
     )
 }

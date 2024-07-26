@@ -8,17 +8,16 @@ import {
     SidebarFooter,
     SidebarContent,
 } from 'react-pro-sidebar';
-
 import { FaGem, FaGithub } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
 import { FaAddressBook } from "react-icons/fa";
 import { MdDashboard} from 'react-icons/md';
 import './SideBar.scss';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
+    const navigate = useNavigate();
     return (
         <>
             <ProSidebar
@@ -42,7 +41,10 @@ const SideBar = (props) => {
                         }}
                     >
                         <FaAddressBook size={'2.5em'} color={""} />
-                        <span>KOSHITAN</span>
+                        <span 
+                        onClick={() => navigate('/')}
+                        className='title'
+                        >KOSHITAN</span>
                     </div>
                 </SidebarHeader>
 
@@ -64,8 +66,12 @@ const SideBar = (props) => {
                                 Quản lý Users
                                 <Link to="/admins/manage-users" />
                              </MenuItem>
-                            <MenuItem> Quản lý Quiz</MenuItem>
-                            <MenuItem> Quản lý câu hỏi</MenuItem>
+                            <MenuItem> Quản lý Quiz
+                            <Link to="/admins/manage-quizzes" />
+                            </MenuItem>
+                            <MenuItem> Quản lý câu hỏi
+                            <Link to="/admins/manage-questions" />
+                            </MenuItem>
                         </SubMenu>
 
                     </Menu>

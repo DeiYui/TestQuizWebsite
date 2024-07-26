@@ -47,12 +47,12 @@ const handleSubmitCreateUser = async() => {
     //validate
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
-      toast.error('invalid email')
+      toast.error('Invalid email')
       return;
     }
 
     if (!password) {
-      toast.error('invalid password')
+      toast.error('Invalid password')
       return;
     }
 

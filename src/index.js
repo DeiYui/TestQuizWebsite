@@ -1,39 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Layout from './Layout';
 import { Provider } from 'react-redux';
-import store from './redux/store';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { store, persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Admin from './component/Admin/Admin';
-import User from './component/User/User';
-import HomePage from './component/Home/HomePage';
-import ManageUser from './component/Admin/Content/ManageUser';
-import DashBoard from './component/Admin/Content/DashBoard';
-import Login from './component/Auth/Login';
+import 'nprogress/nprogress.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import "react-awesome-lightbox/build/style.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
     {/* <React.StrictMode> */}
       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} >
-          <Route index element={<HomePage />} />
-          <Route path="users" element={<User />} />
-         
-        </Route>
+        <Layout/>
 
-        <Route path="admins" element={<Admin />}>
-          <Route index element={<DashBoard />} />  
-          <Route path="manage-users" element={<ManageUser />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-
-      </Routes>
       </BrowserRouter>
     {/* </React.StrictMode> */}
+    </PersistGate>
   </Provider>
 );
 
