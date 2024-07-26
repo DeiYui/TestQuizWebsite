@@ -1,5 +1,4 @@
 import ReactPaginate from "react-paginate";
-import { useState, useEffect } from "react";
 
 
 const TableUserPaginate = (props) => {
@@ -60,7 +59,7 @@ const TableUserPaginate = (props) => {
 
             </tbody>
             </table>
-            <div className="user-pagination">
+            <div className="user-pagination d-flex justify-content-center">
             <ReactPaginate
                 nextLabel="Next >"
                 onPageChange={handlePageClick}

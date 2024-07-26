@@ -59,7 +59,7 @@ const ManageUser = (props) => {
     return (
         <div className="manage-users-container">
             <div className="title">
-                Manage
+                Manage Users
             </div>
             <div className="users-content">
                 <div className="btn-add-new">
